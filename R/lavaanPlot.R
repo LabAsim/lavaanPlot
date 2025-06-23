@@ -41,8 +41,6 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
     ),
     ""
   )
-  print(ParTable$ci.lower)
-  print(ParTable$ci.upper)
   ci.lower <- round(ParTable$ci.lower[regress], digits = digits)
   ci.upper <- round(ParTable$ci.upper[regress], digits = digits)
 
