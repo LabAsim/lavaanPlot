@@ -88,10 +88,10 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
         paste(
           "[label = '",
           coef, stars_reg,
-          " ",
+          "\n",
           if (conf.int) "(",
           if (conf.int) ci.lower else "",
-          if (conf.int) "–",
+          if (conf.int) " – ",
           if (conf.int) ci.upper else "",
           if (conf.int) ")",
           "']",
