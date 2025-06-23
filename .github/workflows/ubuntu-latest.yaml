@@ -21,7 +21,10 @@ jobs:
         uses: r-lib/actions/setup-r@v2
       - name: Install test dependencies
         run: |
-          Rscript -e "install.packages('testthat');install.packages('lavaan')"
+          Rscript -e "install.packages(c('testthat', 'lavaan', 'devtools'));devtools::install_github("LabAsim/lavaanPlot", force = T)"
+      - name: Load libraries
+        run: |
+          Rscript -e "library(testthat);library(lavaan);library(lavaanPlot)"
       - name: Run tests
         run: |
-          Rscript -e "library(testthat);library(lavaan); test_dir('tests/testthat')"
+          Rscript -e "test_dir('tests/testthat')"
