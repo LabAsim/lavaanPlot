@@ -3,11 +3,11 @@ library(testthat)
 library(lavaan)
 library(lavaanPlot)
 
-model <- 'mpg ~ cyl + disp + hp
-qsec ~ disp + hp + wt'
+model <- "mpg ~ cyl + disp + hp
+qsec ~ disp + hp + wt"
 
 fit <- sem(model, data = mtcars)
-#summary(fit)
+# summary(fit)
 
 plot1 <- lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = FALSE)
 
@@ -34,11 +34,11 @@ test_that("plot2", {
 
 ### latents
 
-HS.model <- ' visual  =~ x1 + x2 + x3
+HS.model <- " visual  =~ x1 + x2 + x3
 textual =~ x4 + x5 + x6
-speed   =~ x7 + x8 + x9 '
+speed   =~ x7 + x8 + x9 "
 
-fit <- cfa(HS.model, data=HolzingerSwineford1939)
+fit <- cfa(HS.model, data = HolzingerSwineford1939)
 plot3 <- lavaanPlot(model = fit, edge_options = list(color = "grey"))
 
 plot3_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box ] \n node [shape = box] \n x1; x2; x3; x4; x5; x6; x7; x8; x9 \n node [shape = oval] \n visual; textual; speed \n \n edge [ color = grey ] \n  visual->x1 visual->x2 visual->x3 textual->x4 textual->x5 textual->x6 speed->x7 speed->x8 speed->x9 \n}"
@@ -50,11 +50,11 @@ test_that("plot3", {
 
 ### coef labels
 
-model <- 'mpg ~ cyl + disp + hp
-qsec ~ disp + hp + wt'
+model <- "mpg ~ cyl + disp + hp
+qsec ~ disp + hp + wt"
 
 fit <- sem(model, data = mtcars)
-#summary(fit)
+# summary(fit)
 
 plot4 <- lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE)
 
@@ -84,13 +84,13 @@ test_that("plot6", {
 
 ### latent vars
 
-HS.model <- ' visual  =~ x1 + x2 + x3
+HS.model <- " visual  =~ x1 + x2 + x3
 textual =~ x4 + x5 + x6
 speed   =~ x7 + x8 + x9
-'
+"
 
-fit <- cfa(HS.model, data=HolzingerSwineford1939)
-labels = list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
+fit <- cfa(HS.model, data = HolzingerSwineford1939)
+labels <- list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
 
 # Show coefs
 plot7 <- lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE)
@@ -120,12 +120,12 @@ test_that("plot9", {
 })
 
 ### covariances
-HS.model <- ' visual  =~ x1 + x2 + x3
+HS.model <- " visual  =~ x1 + x2 + x3
 textual =~ x4 + x5 + x6
-speed   =~ x7 + x8 + x9 '
+speed   =~ x7 + x8 + x9 "
 
-fit <- cfa(HS.model, data=HolzingerSwineford1939)
-labels = list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
+fit <- cfa(HS.model, data = HolzingerSwineford1939)
+labels <- list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
 
 # significant standardized paths only
 plot10 <- lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, covs = TRUE)
@@ -212,4 +212,26 @@ test_that("plot19", {
   expect_identical(plot19$x$diagram, plot19_ref)
 })
 
+#######
+# CIs #
+#######
+model <- "mpg ~ cyl + disp + hp
+qsec ~ disp + hp + wt"
 
+fit <- sem(model, data = mtcars)
+
+plot1 <- lavaanPlot(
+  model = fit,
+  node_options = list(shape = "box", fontname = "Helvetica"),
+  edge_options = list(color = "grey"),
+  coefs = T,
+  conf.int = T,
+  digits = 2
+)
+
+plot1$x$diagram
+
+plot1_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99 (-2.43-0.46)\"] disp->mpg [label = \"-0.02 (-0.04-0)\"] hp->mpg [label = \"-0.02 (-0.04-0.01)\"] disp->qsec [label = \"-0.01 (-0.02-0)\"] hp->qsec [label = \"-0.02 (-0.03--0.01)\"] wt->qsec [label = \"1.69 (0.91-2.48)\"]  \n}"
+test_that("plot1", {
+  expect_identical(plot1$x$diagram, plot1_ref)
+})
