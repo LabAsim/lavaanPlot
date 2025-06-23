@@ -24,4 +24,4 @@ jobs:
           Rscript -e "install.packages('testthat');install.packages('lavaan')"
       - name: Run tests
         run: |
-          Rscript -e "library(testthat);library(lavaan); test_dir('tests')"
+          Rscript -e "library(testthat);library(lavaan); test_dir('tests/testthat')"
