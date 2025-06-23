@@ -1,8 +1,3 @@
-library(testthat)
-
-library(lavaan)
-library(lavaanPlot)
-
 model <- "mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt"
 
