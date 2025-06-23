@@ -9,7 +9,7 @@
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
 #' @importFrom stringr str_replace_all
 #' @export
-buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FALSE, stars = NULL, digits = 2, conf.int = T) {
+buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FALSE, stars = NULL, digits = 2, conf.int = F) {
   if (stand) {
     ParTable <- lavaan::standardizedsolution(fit)
     ParTableAlt <- fit@ParTable
@@ -86,7 +86,7 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
         paste(
           "[label = '",
           coef, stars_reg,
-          "\n",
+          if (conf.int) "\n",
           if (conf.int) "(",
           if (conf.int) ci.lower else "",
           if (conf.int) " – ",
