@@ -9,7 +9,10 @@
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
 #' @importFrom stringr str_replace_all
 #' @export
-buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FALSE, stars = NULL, digits = 2, conf.int = F) {
+buildPaths <- function(
+    fit, coefs = FALSE, sig = 1.00,
+    stand = FALSE, covs = FALSE, stars = NULL,
+    digits = 2, conf.int = F, edge_styles = F) {
   if (stand) {
     ParTable <- lavaan::standardizedsolution(fit)
     ParTableAlt <- fit@ParTable
@@ -75,6 +78,11 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
     stars_cov <- ""
   }
 
+  # Add edge styles for regression paths
+  edge_styles_regress <- create_edge_styles(
+    pvals = pval_reg, edge_styles = edge_styles
+  )
+
   # penwidths <- ifelse(coefs == "", 1, 2)
   if (any(regress)) {
     if (coefs) {
@@ -92,7 +100,9 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
           if (conf.int) " – ",
           if (conf.int) ci.upper else "",
           if (conf.int) ")",
-          "']",
+          "'",
+          edge_styles_regress,
+          "]",
           sep = ""
         ),
         collapse = " "
@@ -142,7 +152,7 @@ buildPaths <- function(fit, coefs = FALSE, sig = 1.00, stand = FALSE, covs = FAL
   } else {
     cov_paths <- ""
   }
-  paste(regress_paths, latent_paths, cov_paths, sep = " ")
+  to_return <- paste(regress_paths, latent_paths, cov_paths, sep = " ")
 }
 
 #' Extracts the paths from the lavaan model.
@@ -188,6 +198,24 @@ sig_stars <- function(pvals) {
   star
 }
 
+add_edge_style <- function(pvals) {
+  if (pvals <= 0.05) {
+    line_style <- ""
+  } else {
+    line_style <- " style = dashed "
+  }
+  return(line_style)
+}
+
+create_edge_styles <- function(pvals, edge_styles = F) {
+  if (edge_styles == T) {
+    edge_styles <- unlist(lapply(X = pvals, FUN = add_edge_style))
+  } else {
+    edge_styles <- rep(x = "", times = length(pvals))
+  }
+}
+
+
 #' Adds variable labels to the Diagrammer plot function call.
 #'
 #' @param label_list A named list of variable labels.
@@ -202,17 +230,34 @@ buildLabels <- function(label_list) {
 #' @param model A model fit object of class lavaan.
 #' @param name A string of the name of the plot.
 #' @param labels  An optional named list of variable labels fit object of class lavaan.
-#' @param graph_options  A named list of graph options for Diagrammer syntax.
+#' @param graph_options  A named list of graph options for Diagrammer syntax. See for options here https://graphviz.org/docs/graph/
 #' @param node_options  A named list of node options for Diagrammer syntax.
 #' @param edge_options  A named list of edge options for Diagrammer syntax.
 #' @param ... additional arguments to be passed to \code{buildPaths}
 #' @return A string specifying the path diagram for \code{model}
-buildCall <- function(model = model, name = name, labels = labels, graph_options = list(overlap = "true", fontsize = "10"), node_options = list(shape = "box"), edge_options = list(color = "black"), ...) {
+buildCall <- function(
+    model = model,
+    name = name,
+    labels = labels,
+    graph_options = list(overlap = "true", fontsize = "10"),
+    node_options = list(shape = "box"),
+    edge_options = list(color = "black"),
+    # footnote = "",
+    ...) {
   string <- ""
   string <- paste(string, "digraph", name, "{")
   string <- paste(string, "\n")
   string <- paste(string, "graph", "[", paste(paste(names(graph_options), graph_options, sep = " = "), collapse = ", "), "]")
   string <- paste(string, "\n")
+  # if (footnote != "") {
+  #   string <- paste(
+  #     string,
+  #     "node [shape = plaintext] b [label =", footnote, "]",
+  #     'node [shape=none] c [label = ""] d [label = ""]
+  #     edge [style="invis"] c -> d -> b'
+  #   )
+  #   edge_options <- c(edge_options, list(style = "normal"))
+  # }
   string <- paste(string, "node", "[", paste(paste(names(node_options), node_options, sep = " = "), collapse = ", "), "]")
   string <- paste(string, "\n")
   nodes <- getNodes(model)
