@@ -213,6 +213,7 @@ create_edge_styles <- function(pvals, edge_styles = F) {
   } else {
     edge_styles <- rep(x = "", times = length(pvals))
   }
+  return(edge_styles)
 }
 
 
