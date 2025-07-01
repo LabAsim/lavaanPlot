@@ -226,9 +226,9 @@ plot <- lavaanPlot(
 
 plot$x$diagram
 
-plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99 (-2.43-0.46)\"] disp->mpg [label = \"-0.02 (-0.04-0)\"] hp->mpg [label = \"-0.02 (-0.04-0.01)\"] disp->qsec [label = \"-0.01 (-0.02-0)\"] hp->qsec [label = \"-0.02 (-0.03--0.01)\"] wt->qsec [label = \"1.69 (0.91-2.48)\"]  \n}"
+plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99\n(-2.43 – 0.46)\"] disp->mpg [label = \"-0.02\n(-0.04 – 0)\"] hp->mpg [label = \"-0.02\n(-0.04 – 0.01)\"] disp->qsec [label = \"-0.01\n(-0.02 – 0)\"] hp->qsec [label = \"-0.02\n(-0.03 – -0.01)\"] wt->qsec [label = \"1.69\n(0.91 – 2.48)\"]  \n}"
 test_that("plot", {
-  expect_identical(plot1$x$diagram, plot1_ref)
+  expect_identical(plot$x$diagram, plot_ref)
 })
 
 plot <- lavaanPlot(
@@ -242,7 +242,7 @@ plot <- lavaanPlot(
 
 plot$x$diagram
 
-plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99 \"] disp->mpg [label = \"-0.02 \"] hp->mpg [label = \"-0.02 \"] disp->qsec [label = \"-0.01 \"] hp->qsec [label = \"-0.02 \"] wt->qsec [label = \"1.69 \"]  \n}"
+plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99\"] disp->mpg [label = \"-0.02\"] hp->mpg [label = \"-0.02\"] disp->qsec [label = \"-0.01\"] hp->qsec [label = \"-0.02\"] wt->qsec [label = \"1.69\"]  \n}"
 test_that("plot", {
-  expect_identical(plot1$x$diagram, plot1_ref)
+  expect_identical(plot$x$diagram, plot_ref)
 })
