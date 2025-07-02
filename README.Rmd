@@ -29,7 +29,7 @@ install.packages("devtools")
 devtools::install_github("labasim/lavaanPlot")
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 install.packages("webshot", repos = "http://cran.us.r-project.org")
 webshot::install_phantomjs()
 

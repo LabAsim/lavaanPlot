@@ -43,16 +43,6 @@ install.packages("devtools")
 devtools::install_github("labasim/lavaanPlot")
 ```
 
-    ## Installing package into 'C:/Users/lapto/AppData/Local/R/win-library/4.5'
-    ## (as 'lib' is unspecified)
-
-    ## package 'webshot' successfully unpacked and MD5 sums checked
-    ## 
-    ## The downloaded binary packages are in
-    ##  C:\Users\lapto\AppData\Local\Temp\RtmpcvxvaF\downloaded_packages
-
-    ## It seems that the version of `phantomjs` installed is greater than or equal to the requested version.To install the requested version or downgrade to another version, use `force = TRUE`.
-
 ## Examples
 
 Here’s a quick example using the `mtcars` data set.
