@@ -207,6 +207,33 @@ test_that("plot19", {
   expect_identical(plot19$x$diagram, plot19_ref)
 })
 
+
+########
+# Covs #
+########
+
+model <- "mpg ~ cyl + disp + hp
+qsec ~ disp + hp + wt"
+
+fit <- sem(model, data = mtcars)
+summary(fit)
+plot <- lavaanPlot(
+  model = fit,
+  node_options = list(shape = "box", fontname = "Helvetica"),
+  edge_options = list(color = "grey"),
+  coefs = T,
+  conf.int = F,
+  digits = 2,
+  covs = T
+)
+
+plot$x$diagram
+
+plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99\"] disp->mpg [label = \"-0.02\"] hp->mpg [label = \"-0.02\"] disp->qsec [label = \"-0.01\"] hp->qsec [label = \"-0.02\"] wt->qsec [label = \"1.69\"]  qsec -> mpg [label = \"0.45\", dir = \"both\"] disp -> cyl [label = \"193.42\", dir = \"both\"] hp -> cyl [label = \"98.75\", dir = \"both\"] wt -> cyl [label = \"1.32\", dir = \"both\"] hp -> disp [label = \"6511.12\", dir = \"both\"] wt -> disp [label = \"104.32\", dir = \"both\"] wt -> hp [label = \"42.81\", dir = \"both\"]\n}"
+test_that("plot", {
+  expect_identical(plot$x$diagram, plot_ref)
+})
+
 #######
 # CIs #
 #######
