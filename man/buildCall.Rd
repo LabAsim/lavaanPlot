@@ -21,7 +21,7 @@ buildCall(
 
 \item{labels}{An optional named list of variable labels fit object of class lavaan.}
 
-\item{graph_options}{A named list of graph options for Diagrammer syntax.}
+\item{graph_options}{A named list of graph options for Diagrammer syntax. See for options here https://graphviz.org/docs/graph/}
 
 \item{node_options}{A named list of node options for Diagrammer syntax.}
 

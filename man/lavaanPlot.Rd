@@ -23,9 +23,11 @@ Plots lavaan path model with DiagrammeR
 }
 \examples{
 library(lavaan)
-model <- 'mpg ~ cyl + disp + hp
-          qsec ~ disp + hp + wt'
+model <- "mpg ~ cyl + disp + hp
+          qsec ~ disp + hp + wt"
 fit <- sem(model, data = mtcars)
-lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"),
- edge_options = list(color = "grey"), coefs = FALSE)
+lavaanPlot(
+  model = fit, node_options = list(shape = "box", fontname = "Helvetica"),
+  edge_options = list(color = "grey"), coefs = FALSE
+)
 }

@@ -11,7 +11,9 @@ buildPaths(
   stand = FALSE,
   covs = FALSE,
   stars = NULL,
-  digits = 2
+  digits = 2,
+  conf.int = F,
+  edge_styles = F
 )
 }
 \arguments{
@@ -28,6 +30,10 @@ buildPaths(
 \item{stars}{a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.}
 
 \item{digits}{A number indicating the desired number of digits for the coefficient values in the plot}
+
+\item{conf.int}{whether or not to include confidence intervals of path coefficients}
+
+\item{edge_styles}{Whether or not to depict non-significant coefficients with dashed paths}
 }
 \description{
 Extracts the paths from the lavaan model.
