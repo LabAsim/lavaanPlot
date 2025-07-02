@@ -1,7 +1,7 @@
 model <- "mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt"
 
-fit <- sem(model, data = mtcars)
+fit <- lavaan::sem(model, data = mtcars)
 # summary(fit)
 
 plot1 <- lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = FALSE)
@@ -33,7 +33,7 @@ HS.model <- " visual  =~ x1 + x2 + x3
 textual =~ x4 + x5 + x6
 speed   =~ x7 + x8 + x9 "
 
-fit <- cfa(HS.model, data = HolzingerSwineford1939)
+fit <- lavaan::cfa(HS.model, data = lavaan::HolzingerSwineford1939)
 plot3 <- lavaanPlot(model = fit, edge_options = list(color = "grey"))
 
 plot3_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box ] \n node [shape = box] \n x1; x2; x3; x4; x5; x6; x7; x8; x9 \n node [shape = oval] \n visual; textual; speed \n \n edge [ color = grey ] \n  visual->x1 visual->x2 visual->x3 textual->x4 textual->x5 textual->x6 speed->x7 speed->x8 speed->x9 \n}"
@@ -48,7 +48,7 @@ test_that("plot3", {
 model <- "mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt"
 
-fit <- sem(model, data = mtcars)
+fit <- lavaan::sem(model, data = mtcars)
 # summary(fit)
 
 plot4 <- lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE)
@@ -84,7 +84,7 @@ textual =~ x4 + x5 + x6
 speed   =~ x7 + x8 + x9
 "
 
-fit <- cfa(HS.model, data = HolzingerSwineford1939)
+fit <- lavaan::cfa(HS.model, data = lavaan::HolzingerSwineford1939)
 labels <- list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
 
 # Show coefs
@@ -119,7 +119,7 @@ HS.model <- " visual  =~ x1 + x2 + x3
 textual =~ x4 + x5 + x6
 speed   =~ x7 + x8 + x9 "
 
-fit <- cfa(HS.model, data = HolzingerSwineford1939)
+fit <- lavaan::cfa(HS.model, data = lavaan::HolzingerSwineford1939)
 labels <- list(visual = "Visual Ability", textual = "Textual Ability", speed = "Speed Ability")
 
 # significant standardized paths only
@@ -215,7 +215,7 @@ test_that("plot19", {
 model <- "mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt"
 
-fit <- sem(model, data = mtcars)
+fit <- lavaan::sem(model, data = mtcars)
 summary(fit)
 plot <- lavaanPlot(
   model = fit,
@@ -240,7 +240,7 @@ test_that("plot", {
 model <- "mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt"
 
-fit <- sem(model, data = mtcars)
+fit <- lavaan::sem(model, data = mtcars)
 
 plot <- lavaanPlot(
   model = fit,
