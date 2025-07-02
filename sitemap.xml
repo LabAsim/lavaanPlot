@@ -8,10 +8,12 @@
 <url><loc>http://alexlishinski.com/lavaanPlot/authors.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/index.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/news/index.html</loc></url>
+<url><loc>http://alexlishinski.com/lavaanPlot/reference/add_edge_style.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/buildCall.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/buildLabels.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/buildPaths.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/convert_graph.html</loc></url>
+<url><loc>http://alexlishinski.com/lavaanPlot/reference/create_edge_styles.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/create_edges.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/create_grviz.html</loc></url>
 <url><loc>http://alexlishinski.com/lavaanPlot/reference/create_nodes.html</loc></url>
