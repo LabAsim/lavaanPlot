@@ -7,6 +7,8 @@
 #' @param covs Should model covariances be included in the diagram
 #' @param stars a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
+#' @param conf.int whether or not to include confidence intervals of path coefficients
+#' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @importFrom stringr str_replace_all
 #' @export
 buildPaths <- function(
@@ -19,11 +21,10 @@ buildPaths <- function(
   } else {
     ParTable <- fit@ParTable
     # Add CIs
-    ParTable$ci.lower <- parameterestimates(fit)$ci.lower
-    ParTable$ci.upper <- parameterestimates(fit)$ci.upper
+    ParTable$ci.lower <- lavaan::parameterestimates(fit)$ci.lower
+    ParTable$ci.upper <- lavaan::parameterestimates(fit)$ci.upper
     ParTableAlt <- fit@ParTable
   }
-
   # get rid of . from variable names
   ParTable$lhs <- stringr::str_replace_all(fit@ParTable$lhs, pattern = "\\.", replacement = "")
   ParTable$rhs <- stringr::str_replace_all(fit@ParTable$rhs, pattern = "\\.", replacement = "")
@@ -31,7 +32,6 @@ buildPaths <- function(
   regress <- ParTable$op == "~"
   latent <- ParTable$op == "=~"
   cov <- ParTable$op == "~~" & (ParTable$rhs != ParTable$lhs)
-
 
   zval_reg <- ParTableAlt$est[regress] / ParTableAlt$se[regress]
   pval_reg <- (1 - stats::pnorm(abs(zval_reg))) * 2
@@ -97,7 +97,7 @@ buildPaths <- function(
           if (conf.int) "\n",
           if (conf.int) "(",
           if (conf.int) ci.lower else "",
-          if (conf.int) " – ",
+          if (conf.int) " \u2013 ",
           if (conf.int) ci.upper else "",
           if (conf.int) ")",
           "'",
@@ -196,24 +196,6 @@ sig_stars <- function(pvals) {
     star <- ""
   }
   star
-}
-
-add_edge_style <- function(pvals) {
-  if (pvals <= 0.05) {
-    line_style <- ""
-  } else {
-    line_style <- " style = dashed "
-  }
-  return(line_style)
-}
-
-create_edge_styles <- function(pvals, edge_styles = F) {
-  if (edge_styles == T) {
-    edge_styles <- unlist(lapply(X = pvals, FUN = add_edge_style))
-  } else {
-    edge_styles <- rep(x = "", times = length(pvals))
-  }
-  return(edge_styles)
 }
 
 
