@@ -26,7 +26,7 @@
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alishinski/lavaanPlot/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/labasim/lavaanPlot/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -36,24 +36,45 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/alishinski/lavaanPlot/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/labasim/lavaanPlot/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.0" id="lavaanplot-030">lavaanPlot 0.3.0<a class="anchor" aria-label="anchor" href="#lavaanplot-030"></a></h2><p class="text-muted">CRAN release: 2018-01-26</p>
-<ul><li><p>Added support for latent variables (denoted by circles) in plots</p></li>
-<li><p>Added support for edge labels with significant coefficients</p></li>
+<h2 class="pkg-version" data-toc-text="0.8.1" id="lavaanplot-081">lavaanPlot 0.8.1<a class="anchor" aria-label="anchor" href="#lavaanplot-081"></a></h2><p class="text-muted">CRAN release: 2024-01-29</p>
+<ul><li>Fixed bug with the standardized coefficents in <code>lavaanPlot2</code>
+</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.4.0" id="lavaanplot-040">lavaanPlot 0.4.0<a class="anchor" aria-label="anchor" href="#lavaanplot-040"></a></h2>
-<ul><li><p>Added support for latent variable loading labels</p></li>
-<li><p>Added support for covariance edges</p></li>
-<li><p>Corrected the direction of arrows for latent variable loadings</p></li>
+<h2 class="pkg-version" data-toc-text="0.8.0" id="lavaanplot-080">lavaanPlot 0.8.0<a class="anchor" aria-label="anchor" href="#lavaanplot-080"></a></h2>
+<ul><li>Introducing conditional formatting which allows one to apply different formatting to different sets of nodes and edges</li>
+<li>Version 0.8.0, is introducing conditional formatting to the <code>lavaanPlot</code> package, using the new <code>formatting</code> function. Check out the new vignette explaining the changes here: <a href="https://lavaanplot.alexlishinski.com/Conditional_Formatting" class="external-link">Conditional Formatting in LavaanPlot</a>
+</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.0" id="lavaanplot-050">lavaanPlot 0.5.0<a class="anchor" aria-label="anchor" href="#lavaanplot-050"></a></h2>
-<ul><li><p>Added support for covariance edge labels</p></li>
-<li><p>Added support for significance stars</p></li>
+<h2 class="pkg-version" data-toc-text="0.7.0" id="lavaanplot-070">lavaanPlot 0.7.0<a class="anchor" aria-label="anchor" href="#lavaanplot-070"></a></h2>
+<ul><li>Introducing <code>lavaanPlot2</code> function, which replicates the old functionality in a more flexible platform</li>
+<li>Version 0.7.0, introduced a new iteration of the <code>lavaanPlot</code> function, called <code>lavaanPlot2</code>. Check out a new vignette explaining some of the changes here: <a href="https://lavaanplot.alexlishinski.com/improvements_to_lavaanplot" class="external-link">Improvements to lavaanPlot</a>
+</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.3" id="lavaanplot-063">lavaanPlot 0.6.3<a class="anchor" aria-label="anchor" href="#lavaanplot-063"></a></h2>
+<ul><li><p>Added support for specifying dimensions of saved png files</p></li>
+<li><p>Updated vignette for layout graph options</p></li>
+<li><p>Added package tests</p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.2" id="lavaanplot-062">lavaanPlot 0.6.2<a class="anchor" aria-label="anchor" href="#lavaanplot-062"></a></h2><p class="text-muted">CRAN release: 2021-08-13</p>
+<ul><li>Fixed issues with suggested packages that were causing trouble for CRAN submission</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="lavaanplot-060">lavaanPlot 0.6.0<a class="anchor" aria-label="anchor" href="#lavaanplot-060"></a></h2><p class="text-muted">CRAN release: 2021-02-03</p>
+<ul><li>added functions to save plots as images and embed plots in pdfs with Rmarkdown</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.2" id="lavaanplot-052">lavaanPlot 0.5.2<a class="anchor" aria-label="anchor" href="#lavaanplot-052"></a></h2>
+<ul><li><p>Added digits option for coefficients</p></li>
+<li><p>Changed coefs argument behavior so that it toggles coef values for covariances too</p></li>
+<li><p>Plots now show residual covariances</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.1" id="lavaanplot-051">lavaanPlot 0.5.1<a class="anchor" aria-label="anchor" href="#lavaanplot-051"></a></h2><p class="text-muted">CRAN release: 2018-04-25</p>
@@ -63,44 +84,27 @@
 <li><p>Changed significance stars so you can choose which parameters to use them with</p></li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.2" id="lavaanplot-052">lavaanPlot 0.5.2<a class="anchor" aria-label="anchor" href="#lavaanplot-052"></a></h2>
-<ul><li><p>Added digits option for coefficients</p></li>
-<li><p>Changed coefs argument behavior so that it toggles coef values for covariances too</p></li>
-<li><p>Plots now show residual covariances</p></li>
+<h2 class="pkg-version" data-toc-text="0.5.0" id="lavaanplot-050">lavaanPlot 0.5.0<a class="anchor" aria-label="anchor" href="#lavaanplot-050"></a></h2>
+<ul><li><p>Added support for covariance edge labels</p></li>
+<li><p>Added support for significance stars</p></li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6.0" id="lavaanplot-060">lavaanPlot 0.6.0<a class="anchor" aria-label="anchor" href="#lavaanplot-060"></a></h2><p class="text-muted">CRAN release: 2021-02-03</p>
-<ul><li>added functions to save plots as images and embed plots in pdfs with Rmarkdown</li>
+<h2 class="pkg-version" data-toc-text="0.4.0" id="lavaanplot-040">lavaanPlot 0.4.0<a class="anchor" aria-label="anchor" href="#lavaanplot-040"></a></h2>
+<ul><li><p>Added support for latent variable loading labels</p></li>
+<li><p>Added support for covariance edges</p></li>
+<li><p>Corrected the direction of arrows for latent variable loadings</p></li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6.2" id="lavaanplot-062">lavaanPlot 0.6.2<a class="anchor" aria-label="anchor" href="#lavaanplot-062"></a></h2><p class="text-muted">CRAN release: 2021-08-13</p>
-<ul><li>Fixed issues with suggested packages that were causing trouble for CRAN submission</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6.3" id="lavaanplot-063">lavaanPlot 0.6.3<a class="anchor" aria-label="anchor" href="#lavaanplot-063"></a></h2>
-<ul><li><p>Added support for specifying dimensions of saved png files</p></li>
-<li><p>Updated vignette for layout graph options</p></li>
-<li><p>Added package tests</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7.0" id="lavaanplot-070">lavaanPlot 0.7.0<a class="anchor" aria-label="anchor" href="#lavaanplot-070"></a></h2>
-<ul><li>Introducing <code>lavaanPlot2</code> function, which replicates the old functionality in a more flexible platform</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.0" id="lavaanplot-080">lavaanPlot 0.8.0<a class="anchor" aria-label="anchor" href="#lavaanplot-080"></a></h2>
-<ul><li>Introducing conditional formatting which allows one to apply different formatting to different sets of nodes and edges</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.1" id="lavaanplot-081">lavaanPlot 0.8.1<a class="anchor" aria-label="anchor" href="#lavaanplot-081"></a></h2><p class="text-muted">CRAN release: 2024-01-29</p>
-<ul><li>Fixed bug with the standardized coefficents in <code>lavaanPlot2</code>
-</li>
+<h2 class="pkg-version" data-toc-text="0.3.0" id="lavaanplot-030">lavaanPlot 0.3.0<a class="anchor" aria-label="anchor" href="#lavaanplot-030"></a></h2><p class="text-muted">CRAN release: 2018-01-26</p>
+<ul><li><p>Added support for latent variables (denoted by circles) in plots</p></li>
+<li><p>Added support for edge labels with significant coefficients</p></li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Alex Lishinski.</p>
+  <p>Developed by Lab Asim.</p>
 </div>
 
 <div class="pkgdown-footer-right">
