@@ -1,22 +1,42 @@
-# lavaanPlot 0.3.0
 
-* Added support for latent variables (denoted by circles) in plots
+# lavaanPlot 0.8.1
 
-* Added support for edge labels with significant coefficients
+* Fixed bug with the standardized coefficents in `lavaanPlot2`
 
-# lavaanPlot 0.4.0
+# lavaanPlot 0.8.0
 
-* Added support for latent variable loading labels
+* Introducing conditional formatting which allows one to apply different formatting to different sets of nodes and edges
+* Version 0.8.0, is introducing conditional formatting to the `lavaanPlot` package, using the new `formatting` function. Check out the new vignette explaining the changes here: [Conditional Formatting in LavaanPlot](https://lavaanplot.alexlishinski.com/Conditional_Formatting)
 
-* Added support for covariance edges
+# lavaanPlot 0.7.0
 
-* Corrected the direction of arrows for latent variable loadings
+* Introducing `lavaanPlot2` function, which replicates the old functionality in a more flexible platform
+* Version 0.7.0, introduced a new iteration of the `lavaanPlot` function, called `lavaanPlot2`. Check out a new vignette explaining some of the changes here: [Improvements to lavaanPlot](https://lavaanplot.alexlishinski.com/improvements_to_lavaanplot)
 
-# lavaanPlot 0.5.0
+# lavaanPlot 0.6.3
 
-* Added support for covariance edge labels
+* Added support for specifying dimensions of saved png files
 
-* Added support for significance stars
+* Updated vignette for layout graph options
+
+* Added package tests
+
+
+# lavaanPlot 0.6.2
+
+* Fixed issues with suggested packages that were causing trouble for CRAN submission
+
+# lavaanPlot 0.6.0
+
+* added functions to save plots as images and embed plots in pdfs with Rmarkdown 
+
+# lavaanPlot 0.5.2
+
+* Added digits option for coefficients
+
+* Changed coefs argument behavior so that it toggles coef values for covariances too
+
+* Plots now show residual covariances
 
 # lavaanPlot 0.5.1
 
@@ -28,38 +48,23 @@
 
 * Changed significance stars so you can choose which parameters to use them with
 
-# lavaanPlot 0.5.2
+# lavaanPlot 0.5.0
 
-* Added digits option for coefficients
+* Added support for covariance edge labels
 
-* Changed coefs argument behavior so that it toggles coef values for covariances too
+* Added support for significance stars
 
-* Plots now show residual covariances
 
-# lavaanPlot 0.6.0
+# lavaanPlot 0.4.0
 
-* added functions to save plots as images and embed plots in pdfs with Rmarkdown 
+* Added support for latent variable loading labels
 
-# lavaanPlot 0.6.2
+* Added support for covariance edges
 
-* Fixed issues with suggested packages that were causing trouble for CRAN submission
+* Corrected the direction of arrows for latent variable loadings
 
-# lavaanPlot 0.6.3
+# lavaanPlot 0.3.0
 
-* Added support for specifying dimensions of saved png files
+* Added support for latent variables (denoted by circles) in plots
 
-* Updated vignette for layout graph options
-
-* Added package tests
-
-# lavaanPlot 0.7.0
-
-* Introducing `lavaanPlot2` function, which replicates the old functionality in a more flexible platform
-
-# lavaanPlot 0.8.0
-
-* Introducing conditional formatting which allows one to apply different formatting to different sets of nodes and edges
-
-# lavaanPlot 0.8.1
-
-* Fixed bug with the standardized coefficents in `lavaanPlot2`
+* Added support for edge labels with significant coefficients

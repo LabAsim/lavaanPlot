@@ -3,8 +3,8 @@ Type: Package
 Title: Path Diagrams for 'Lavaan' Models via 'DiagrammeR'
 Version: 0.8.1
 Author: Alex Lishinski
-Maintainer: Alex Lishinski <alexlishinski@gmail.com>
-URL: https://github.com/alishinski/lavaanPlot, https://lavaanplot.alexlishinski.com/, http://alexlishinski.com/lavaanPlot/
+Maintainer: Lab Asim
+URL: https://github.com/labasim/lavaanPlot
 Description: Plots path diagrams from models in 'lavaan' using the plotting
     functionality from the 'DiagrammeR' package. 'DiagrammeR' provides nice path diagrams 
     via 'Graphviz', and these functions make it easy to generate these diagrams from a

@@ -6,16 +6,15 @@ always_allow_html: true
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+[![R-CMD-check.yaml](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml)
 
-[![CRAN status](https://www.r-pkg.org/badges/version/lavaanPlot)](https://cran.r-project.org/package=lavaanPlot)
-[![](https://cranlogs.r-pkg.org/badges/lavaanPlot)](https://cran.r-project.org/package=lavaanPlot)
-[![R-CMD-check](https://github.com/alishinski/lavaanPlot/workflows/R-CMD-check/badge.svg)](https://github.com/alishinski/lavaanPlot/actions)
+## Current status
 
-## News
+The original package is not maintained for a long time, so I forked it and add some features that I needed for my research and they were not available. They will be documented in a new vignette.
 
-Version 0.7.0, is introducing a new iteration of the `lavaanPlot` function, called `lavaanPlot2`. Check out a new vignette explaining some of the changes here: [Improvements to lavaanPlot](https://lavaanplot.alexlishinski.com/improvements_to_lavaanplot)
+## Background
 
-Version 0.8.0, is introducing conditional formatting to the `lavaanPlot` package, using the new `formatting` function. Check out the new vignette explaining the changes here: [Conditional Formatting in LavaanPlot](https://lavaanplot.alexlishinski.com/Conditional_Formatting)
+The lavaan package is an excellent package for structural equation models, and the DiagrammeR package is an excellent package for producing nice looking graph diagrams. As of right now, the lavaan package has no built in plotting functions for models, and the available options from external packages don’t look as nice and aren’t as easy to use as DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build path diagrams for your models, but it requires you to build the diagram specification manually. This package exists to streamline that process, allowing you to plot your lavaan models directly, without having to translate them into the DOT language specification that DiagrammeR uses.
 
 ## Background
 
@@ -23,18 +22,19 @@ The lavaan package is an excellent package for structural equation models, and t
 
 ## Installation
 
-You can install lavaanPlot from CRAN with:
-
-```{r, eval = F}
-install.packages("lavaanPlot")
-```
-
 You can also install the development version of lavaanPlot from GitHub with:
 
 ```{r gh-installation, eval = FALSE}
 install.packages("devtools")
-devtools::install_github("alishinski/lavaanPlot")
+devtools::install_github("labasim/lavaanPlot")
 ```
+
+```{r, echo=FALSE}
+install.packages("webshot", repos = "http://cran.us.r-project.org")
+webshot::install_phantomjs()
+
+```
+
 
 ## Examples
 
@@ -56,7 +56,7 @@ summary(fit)
 Then using that model fit object, simply call the `lavaanPlot` function, specifying your desired graph parameters.
 
 ```{r}
-lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = F)
+lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = T)
 ```
 
 There is also functionality to save these plots as images and embed them in pdf output documents.

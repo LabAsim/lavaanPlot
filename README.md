@@ -1,20 +1,24 @@
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/lavaanPlot)](https://cran.r-project.org/package=lavaanPlot)
-[![](https://cranlogs.r-pkg.org/badges/lavaanPlot)](https://cran.r-project.org/package=lavaanPlot)
-[![R-CMD-check](https://github.com/alishinski/lavaanPlot/workflows/R-CMD-check/badge.svg)](https://github.com/alishinski/lavaanPlot/actions)
+[![R-CMD-check.yaml](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml)
 
-## News
+## Current status
 
-Version 0.7.0, introduced a new iteration of the `lavaanPlot`
-function, called `lavaanPlot2`. Check out a new vignette explaining some
-of the changes here: [Improvements to
-lavaanPlot](https://lavaanplot.alexlishinski.com/improvements_to_lavaanplot)
+The original package is not maintained for a long time, so I forked it
+and add some features that I needed for my research and they were not
+available. They will be documented in a new vignette.
 
-Version 0.8.0, is introducing conditional formatting to the `lavaanPlot`
-package, using the new `formatting` function. Check out the new vignette
-explaining the changes here: [Conditional Formatting in
-LavaanPlot](https://lavaanplot.alexlishinski.com/Conditional_Formatting)
+## Background
+
+The lavaan package is an excellent package for structural equation
+models, and the DiagrammeR package is an excellent package for producing
+nice looking graph diagrams. As of right now, the lavaan package has no
+built in plotting functions for models, and the available options from
+external packages don’t look as nice and aren’t as easy to use as
+DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build
+path diagrams for your models, but it requires you to build the diagram
+specification manually. This package exists to streamline that process,
+allowing you to plot your lavaan models directly, without having to
+translate them into the DOT language specification that DiagrammeR uses.
 
 ## Background
 
@@ -31,19 +35,23 @@ translate them into the DOT language specification that DiagrammeR uses.
 
 ## Installation
 
-You can install lavaanPlot from CRAN with:
-
-``` r
-install.packages("lavaanPlot")
-```
-
 You can also install the development version of lavaanPlot from GitHub
 with:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("alishinski/lavaanPlot")
+devtools::install_github("labasim/lavaanPlot")
 ```
+
+    ## Installing package into 'C:/Users/lapto/AppData/Local/R/win-library/4.5'
+    ## (as 'lib' is unspecified)
+
+    ## package 'webshot' successfully unpacked and MD5 sums checked
+    ## 
+    ## The downloaded binary packages are in
+    ##  C:\Users\lapto\AppData\Local\Temp\RtmpcvxvaF\downloaded_packages
+
+    ## It seems that the version of `phantomjs` installed is greater than or equal to the requested version.To install the requested version or downgrade to another version, use `force = TRUE`.
 
 ## Examples
 
@@ -56,7 +64,7 @@ regression relationships and latent variable - indicator relationships.
 library(lavaan)
 ```
 
-    ## This is lavaan 0.6-11
+    ## This is lavaan 0.6-19
     ## lavaan is FREE software! Please report any bugs.
 
 ``` r
@@ -69,14 +77,14 @@ fit <- sem(model, data = mtcars)
 summary(fit)
 ```
 
-    ## lavaan 0.6-11 ended normally after 32 iterations
+    ## lavaan 0.6-19 ended normally after 32 iterations
     ## 
     ##   Estimator                                         ML
     ##   Optimization method                           NLMINB
     ##   Number of model parameters                         9
-    ##                                                       
+    ## 
     ##   Number of observations                            32
-    ##                                                       
+    ## 
     ## Model Test User Model:
     ##                                                       
     ##   Test statistic                                18.266
@@ -114,11 +122,10 @@ Then using that model fit object, simply call the `lavaanPlot` function,
 specifying your desired graph parameters.
 
 ``` r
-lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = F)
+lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = T)
 ```
 
-<div id="htmlwidget-8f7e74db38ea52a7f83d" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8f7e74db38ea52a7f83d">{"x":{"diagram":" digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n \n edge [ color = grey ] \n cyl->mpg disp->mpg hp->mpg disp->qsec hp->qsec wt->qsec  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 There is also functionality to save these plots as images and embed them
 in pdf output documents.
