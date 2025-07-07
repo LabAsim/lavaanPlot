@@ -10,7 +10,6 @@
 #' @param conf.int whether or not to include confidence intervals of path coefficients
 #' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @importFrom stringr str_replace_all
-#' @export
 buildPaths <- function(
     fit, coefs = FALSE, sig = 1.00,
     stand = FALSE, covs = FALSE, stars = NULL,
@@ -222,9 +221,13 @@ buildCall <- function(
     model = model,
     name = name,
     labels = labels,
-    graph_options = list(overlap = "true", fontsize = "10"),
-    node_options = list(shape = "box"),
-    edge_options = list(color = "black"),
+    graph_options = graph_options,
+    node_options = node_options,
+    edge_options = edge_options,
+    # buildPaths args
+    coefs, sig,
+    stand, covs, stars,
+    digits, conf.int, edge_styles,
     # footnote = "",
     ...) {
   string <- ""
@@ -257,7 +260,12 @@ buildCall <- function(
   string <- paste(string, "\n")
   string <- paste(string, "edge", "[", paste(paste(names(edge_options), edge_options, sep = " = "), collapse = ", "), "]")
   string <- paste(string, "\n")
-  string <- paste(string, buildPaths(model, ...))
+  string <- paste(string, buildPaths(
+    model,
+    coefs, sig,
+    stand, covs, stars,
+    digits, conf.int, edge_styles, ...
+  ))
   string <- paste(string, "}", sep = "\n")
   string
 }
@@ -267,6 +275,20 @@ buildCall <- function(
 #' @param model A model fit object of class lavaan.
 #' @param name A string of the name of the plot.
 #' @param labels  An optional named list of variable labels.
+#' @param model A model fit object of class lavaan.
+#' @param name A string of the name of the plot.
+#' @param labels  An optional named list of variable labels fit object of class lavaan.
+#' @param graph_options  A named list of graph options for Diagrammer syntax. See for options here https://graphviz.org/docs/graph/
+#' @param node_options  A named list of node options for Diagrammer syntax.
+#' @param edge_options  A named list of edge options for Diagrammer syntax.
+#' @param coefs whether or not to include significant path coefficient values in diagram
+#' @param sig significance level for determining what significant paths are
+#' @param stand Should the coefficients being used be standardized coefficients
+#' @param covs Should model covariances be included in the diagram
+#' @param stars a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.
+#' @param digits A number indicating the desired number of digits for the coefficient values in the plot
+#' @param conf.int whether or not to include confidence intervals of path coefficients
+#' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @param ... Additional arguments to be called to \code{buildCall} and \code{buildPaths}
 #' @return A Diagrammer plot of the path diagram for \code{model}
 #' @importFrom DiagrammeR grViz
@@ -280,7 +302,27 @@ buildCall <- function(
 #'   model = fit, node_options = list(shape = "box", fontname = "Helvetica"),
 #'   edge_options = list(color = "grey"), coefs = FALSE
 #' )
-lavaanPlot <- function(model, name = "plot", labels = NULL, ...) {
-  plotCall <- buildCall(model = model, name = name, labels = labels, ...)
+lavaanPlot <- function(
+    model, name = "plot",
+    # buildCall args
+    labels = NULL,
+    graph_options = list(overlap = "true", fontsize = "10"),
+    node_options = list(shape = "box"),
+    edge_options = list(color = "black"),
+    # buildPaths args
+    coefs = FALSE, sig = 1.00,
+    stand = FALSE, covs = FALSE, stars = NULL,
+    digits = 2, conf.int = F, edge_styles = F,
+    ...) {
+  plotCall <- buildCall(
+    model = model, name = name, labels = labels,
+    graph_options = graph_options,
+    node_options = node_options,
+    edge_options = edge_options,
+    # buildPaths args
+    coefs = coefs, sig = sig,
+    stand = stand, covs = covs, stars = stars,
+    digits = digits, conf.int = conf.int, edge_styles = edge_styles, ...
+  )
   grViz(plotCall)
 }
