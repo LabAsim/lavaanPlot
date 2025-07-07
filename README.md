@@ -1,21 +1,18 @@
 
 ⁠<!-- badges: start -->⁠
-
 [![R-CMD-check.yaml](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml)
 [![Test
 coverage](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml)
 [![codecov](https://codecov.io/github/LabAsim/lavaanPlot/graph/badge.svg?token=DBA8ZBICH1)](https://codecov.io/github/LabAsim/lavaanPlot)
-
-<!-- badges: end -->
-
-⁠
+<!-- badges: end -->⁠
 
 ## Current status
 
 The [original package](https://github.com/alishinski/lavaanPlot) is not
-maintained for a long time, so I forked it and add some features that I
-needed for my research and they were not available. They will be
-documented in a new vignette.
+maintained for a long time, so I forked it and added some features that
+I needed for my research and they were not available. They will be
+documented in a new vignette. The new documentation is available
+[here](https://labasim.github.io/lavaanPlot/).
 
 ## Background
 
