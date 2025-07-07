@@ -47,7 +47,6 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/labasim/lavaanPlot/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,15 +61,10 @@
 <div class="section level2">
 <h2 id="current-status">Current status<a class="anchor" aria-label="anchor" href="#current-status"></a>
 </h2>
-<p>The original package is not maintained for a long time, so I forked it and add some features that I needed for my research and they were not available. They will be documented in a new vignette.</p>
+<p>The <a href="https://github.com/alishinski/lavaanPlot" class="external-link">original package</a> is not maintained for a long time, so I forked it and add some features that I needed for my research and they were not available. They will be documented in a new vignette.</p>
 </div>
 <div class="section level2">
 <h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
-</h2>
-<p>The lavaan package is an excellent package for structural equation models, and the DiagrammeR package is an excellent package for producing nice looking graph diagrams. As of right now, the lavaan package has no built in plotting functions for models, and the available options from external packages don’t look as nice and aren’t as easy to use as DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build path diagrams for your models, but it requires you to build the diagram specification manually. This package exists to streamline that process, allowing you to plot your lavaan models directly, without having to translate them into the DOT language specification that DiagrammeR uses.</p>
-</div>
-<div class="section level2">
-<h2 id="background-1">Background<a class="anchor" aria-label="anchor" href="#background-1"></a>
 </h2>
 <p>The lavaan package is an excellent package for structural equation models, and the DiagrammeR package is an excellent package for producing nice looking graph diagrams. As of right now, the lavaan package has no built in plotting functions for models, and the available options from external packages don’t look as nice and aren’t as easy to use as DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build path diagrams for your models, but it requires you to build the diagram specification manually. This package exists to streamline that process, allowing you to plot your lavaan models directly, without having to translate them into the DOT language specification that DiagrammeR uses.</p>
 </div>
@@ -81,82 +75,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"labasim/lavaanPlot"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h2>
-<p>Here’s a quick example using the <code>mtcars</code> data set.</p>
-<p>First fit your lavaan model. The package supports plotting lavaan regression relationships and latent variable - indicator relationships.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be" class="external-link">lavaan</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">## This is lavaan 0.6-19</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## lavaan is FREE software! Please report any bugs.</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/labasim/lavaanPlot" class="external-link">lavaanPlot</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">'mpg ~ cyl + disp + hp</span></span>
-<span><span class="st">          qsec ~ disp + hp + wt'</span></span>
-<span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## lavaan 0.6-19 ended normally after 32 iterations</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">##   Estimator                                         ML</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">##   Optimization method                           NLMINB</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="do">##   Number of model parameters                         9</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="do">##   Number of observations                            32</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">## Model Test User Model:</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="do">##                                                       </span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="do">##   Test statistic                                18.266</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="do">##   Degrees of freedom                                 2</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="do">##   P-value (Chi-square)                           0.000</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="do">## Parameter Estimates:</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="do">##   Standard errors                             Standard</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="do">##   Information                                 Expected</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="do">##   Information saturated (h1) model          Structured</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="do">## Regressions:</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="do">##                    Estimate   Std.Err  z-value  P(&gt;|z|)</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="do">##   mpg ~                                                </span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="do">##     cyl               -0.987    0.738   -1.337    0.181</span></span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="do">##     disp              -0.021    0.010   -2.178    0.029</span></span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="do">##     hp                -0.017    0.014   -1.218    0.223</span></span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="do">##   qsec ~                                               </span></span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="do">##     disp              -0.008    0.004   -2.122    0.034</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="do">##     hp                -0.023    0.004   -5.229    0.000</span></span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="do">##     wt                 1.695    0.398    4.256    0.000</span></span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="do">## Covariances:</span></span>
-<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="do">##                    Estimate   Std.Err  z-value  P(&gt;|z|)</span></span>
-<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="do">##  .mpg ~~                                               </span></span>
-<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="do">##    .qsec               0.447    0.511    0.874    0.382</span></span>
-<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="do">## Variances:</span></span>
-<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="do">##                    Estimate   Std.Err  z-value  P(&gt;|z|)</span></span>
-<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="do">##    .mpg                8.194    2.049    4.000    0.000</span></span>
-<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="do">##    .qsec               0.996    0.249    4.000    0.000</span></span></code></pre></div>
-<p>Then using that model fit object, simply call the <code>lavaanPlot</code> function, specifying your desired graph parameters.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/lavaanPlot.html">lavaanPlot</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">fit</span>, node_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"box"</span>, fontname <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span>, edge_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span>, coefs <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="README_files/figure-gfm/unnamed-chunk-3-1.png"><!-- --></p>
-<p>There is also functionality to save these plots as images and embed them in pdf output documents.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">'mpg ~ cyl + disp + hp</span></span>
-<span><span class="st">          qsec ~ disp + hp + wt'</span></span>
-<span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/lavaanPlot.html">lavaanPlot</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">fit</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Example for pdf embed</span></span>
-<span><span class="fu"><a href="reference/embed_plot_pdf.html">embed_plot_pdf</a></span><span class="op">(</span><span class="va">pl</span>, <span class="st">"plot2.pdf"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Example for saving to .png</span></span>
-<span><span class="fu"><a href="reference/save_png.html">save_png</a></span><span class="op">(</span><span class="va">pl</span>, <span class="st">"plot.png"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <div class="page-header"><h1 id="learning-more">Learning More<a class="anchor" aria-label="anchor" href="#learning-more"></a>
@@ -178,7 +96,6 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=lavaanPlot" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/labasim/lavaanPlot/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
 
