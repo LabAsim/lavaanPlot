@@ -29,11 +29,11 @@ lavaanPlot(
 
 \item{labels}{An optional named list of variable labels fit object of class lavaan.}
 
-\item{graph_options}{A named list of graph options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/graph/)}
+\item{graph_options}{A named list of graph options for Diagrammer syntax. See for options https://graphviz.org/docs/graph/}
 
-\item{node_options}{A named list of node options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/nodes/)}
+\item{node_options}{A named list of node options for Diagrammer syntax. See for options https://graphviz.org/docs/nodes/}
 
-\item{edge_options}{A named list of edge options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/edges/)}
+\item{edge_options}{A named list of edge options for Diagrammer syntax. See for options https://graphviz.org/docs/edges/}
 
 \item{coefs}{whether or not to include significant path coefficient values in diagram}
 

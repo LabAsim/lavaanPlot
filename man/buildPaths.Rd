@@ -4,17 +4,7 @@
 \alias{buildPaths}
 \title{Extracts the paths from the lavaan model.}
 \usage{
-buildPaths(
-  fit,
-  coefs = FALSE,
-  sig = 1,
-  stand = FALSE,
-  covs = FALSE,
-  stars = NULL,
-  digits = 2,
-  conf.int = F,
-  edge_styles = F
-)
+buildPaths(fit, coefs, sig, stand, covs, stars, digits, conf.int, edge_styles)
 }
 \arguments{
 \item{fit}{A model fit object of class lavaan.}

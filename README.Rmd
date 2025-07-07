@@ -22,10 +22,6 @@ The original package is not maintained for a long time, so I forked it and add s
 
 The lavaan package is an excellent package for structural equation models, and the DiagrammeR package is an excellent package for producing nice looking graph diagrams. As of right now, the lavaan package has no built in plotting functions for models, and the available options from external packages don’t look as nice and aren’t as easy to use as DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build path diagrams for your models, but it requires you to build the diagram specification manually. This package exists to streamline that process, allowing you to plot your lavaan models directly, without having to translate them into the DOT language specification that DiagrammeR uses.
 
-## Background
-
-The lavaan package is an excellent package for structural equation models, and the DiagrammeR package is an excellent package for producing nice looking graph diagrams. As of right now, the lavaan package has no built in plotting functions for models, and the available options from external packages don't look as nice and aren't as easy to use as DiagrammeR, in my opinion. Of course, you can use DiagrammeR to build path diagrams for your models, but it requires you to build the diagram specification manually. This package exists to streamline that process, allowing you to plot your lavaan models directly, without having to translate them into the DOT language specification that DiagrammeR uses.
-
 ## Installation
 
 You can also install the development version of lavaanPlot from GitHub with:
