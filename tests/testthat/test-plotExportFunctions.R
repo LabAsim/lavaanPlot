@@ -18,3 +18,18 @@ test_that("plot", {
   expect_equal(file.exists(filename), T)
   file.remove(filename)
 })
+
+test_that("plot", {
+  filename <- file.path(getwd(), "test.png")
+  save_png(plot = plot, filename = filename, width = 100, height = 100)
+  expect_equal(file.exists(filename), T)
+  file.remove(filename)
+})
+
+
+test_that("plot", {
+  filename <- file.path(getwd(), "test.pdf")
+  embed_plot_pdf(plot = plot, filename = filename, width = 100, height = 100)
+  expect_equal(file.exists(filename), T)
+  file.remove(filename)
+})
