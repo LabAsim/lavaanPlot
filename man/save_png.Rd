@@ -4,12 +4,12 @@
 \alias{save_png}
 \title{Saves a plot as a png}
 \usage{
-save_png(plot, path, width = NULL, height = NULL)
+save_png(plot, filename, width = NULL, height = NULL)
 }
 \arguments{
 \item{plot}{plot object created by \code{lavaanPlot}}
 
-\item{path}{filename to save the image}
+\item{filename}{filename to save the image}
 
 \item{width}{width of image in pixels, NULL for default}
 
@@ -23,8 +23,8 @@ Saves a plot as a png
 }
 \examples{
 library(lavaan)
-model <- 'mpg ~ cyl + disp + hp
-          qsec ~ disp + hp + wt'
+model <- "mpg ~ cyl + disp + hp
+          qsec ~ disp + hp + wt"
 fit <- sem(model, data = mtcars)
 pl <- lavaanPlot(model = fit)
 \dontrun{

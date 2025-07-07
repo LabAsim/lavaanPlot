@@ -4,12 +4,12 @@
 \alias{embed_plot_pdf}
 \title{Embeds a plot into an rmarkdown pdf}
 \usage{
-embed_plot_pdf(plot, path, width = NULL, height = NULL)
+embed_plot_pdf(plot, filename, width = NULL, height = NULL)
 }
 \arguments{
 \item{plot}{plot object created by \code{lavaanPlot}}
 
-\item{path}{Filename to save the image}
+\item{filename}{Filename to save the image}
 
 \item{width}{width of image in pixels, NULL for default}
 
@@ -23,8 +23,8 @@ Embeds a plot into an rmarkdown pdf
 }
 \examples{
 library(lavaan)
-model <- 'mpg ~ cyl + disp + hp
-          qsec ~ disp + hp + wt'
+model <- "mpg ~ cyl + disp + hp
+          qsec ~ disp + hp + wt"
 fit <- sem(model, data = mtcars)
 pl <- lavaanPlot(model = fit)
 \dontrun{
