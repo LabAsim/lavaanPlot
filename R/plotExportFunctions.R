@@ -40,7 +40,7 @@ save_png <- function(plot, filename, width = NULL, height = NULL) {
 #' Embeds a plot into an rmarkdown pdf
 #'
 #' @param plot plot object created by \code{lavaanPlot}
-#' @param path Filename to save the image
+#' @param filename Filename to save the image
 #' @param width width of image in pixels, NULL for default
 #' @param height height of image, NULL for default
 #' @return no return value calls \code{include_graphics} to embed plot in pdf
@@ -55,7 +55,7 @@ save_png <- function(plot, filename, width = NULL, height = NULL) {
 #' \dontrun{
 #' embed_plot_pdf(pl, "plot2.pdf")
 #' }
-embed_plot_pdf <- function(plot, path, width = NULL, height = NULL) {
+embed_plot_pdf <- function(plot, filename, width = NULL, height = NULL) {
   if (!requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
     stop("Package \"DiagrammeRsvg\" needed for this function to work. Please install it.",
       call. = FALSE
@@ -71,8 +71,8 @@ embed_plot_pdf <- function(plot, path, width = NULL, height = NULL) {
   } else {
     DiagrammeRsvg::export_svg(plot) %>%
       charToRaw() %>%
-      rsvg::rsvg_pdf(path, width = width, height = height)
+      rsvg::rsvg_pdf(filename, width = width, height = height)
 
-    knitr::include_graphics(path)
+    knitr::include_graphics(filename)
   }
 }
