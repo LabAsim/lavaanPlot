@@ -7,7 +7,7 @@
 sig_stars(pval)
 }
 \arguments{
-\item{pvals}{a vector of p values}
+\item{pval}{a vector of p values}
 }
 \description{
 Generates standard significance stars
