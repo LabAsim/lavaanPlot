@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Current status
 
-The original package is not maintained for a long time, so I forked it and add some features that I needed for my research and they were not available. They will be documented in a new vignette.
+The [original package](https://github.com/alishinski/lavaanPlot) is not maintained for a long time, so I forked it and added some features that I needed for my research and they were not available. They will be documented in a new vignette.
 
 ## Background
 
@@ -34,46 +34,6 @@ devtools::install_github("labasim/lavaanPlot")
 ```{r, include=FALSE}
 install.packages("webshot", repos = "http://cran.us.r-project.org")
 webshot::install_phantomjs(force=T)
-```
-
-## Examples
-
-Here's a quick example using the `mtcars` data set. 
-
-First fit your lavaan model. The package supports plotting lavaan regression relationships and latent variable - indicator relationships.
-
-```{r}
-library(lavaan)
-library(lavaanPlot)
-
-model <- 'mpg ~ cyl + disp + hp
-          qsec ~ disp + hp + wt'
-
-fit <- sem(model, data = mtcars)
-summary(fit)
-```
-
-Then using that model fit object, simply call the `lavaanPlot` function, specifying your desired graph parameters.
-
-```{r}
-lavaanPlot(model = fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = T)
-```
-
-There is also functionality to save these plots as images and embed them in pdf output documents.
-
-```{r, eval = FALSE}
-model <- 'mpg ~ cyl + disp + hp
-          qsec ~ disp + hp + wt'
-
-fit <- sem(model, data = mtcars)
-
-pl <- lavaanPlot(model = fit)
-
-# Example for pdf embed
-embed_plot_pdf(pl, "plot2.pdf")
-
-# Example for saving to .png
-save_png(pl, "plot.png")
 ```
 
 # Learning More
