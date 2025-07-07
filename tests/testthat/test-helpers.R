@@ -35,28 +35,28 @@ test_that(
   desc = "Generates standard significance stars",
   code = {
     expect_identical(
-      sig_stars(pvals = 0.051),
+      sig_stars(pval = 0.051),
       ""
     )
     expect_identical(
-      sig_stars(pvals = 0.049),
+      sig_stars(pval = 0.049),
       "*"
     )
     expect_identical(
-      sig_stars(pvals = 0.01),
+      sig_stars(pval = 0.01),
       "**"
     )
 
     expect_identical(
-      sig_stars(pvals = 0.0099),
+      sig_stars(pval = 0.0099),
       "**"
     )
     expect_identical(
-      sig_stars(pvals = 0.001),
+      sig_stars(pval = 0.001),
       "***"
     )
     expect_identical(
-      sig_stars(pvals = 0.00099),
+      sig_stars(pval = 0.00099),
       "***"
     )
   }
