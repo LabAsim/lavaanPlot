@@ -11,9 +11,9 @@
 #' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @importFrom stringr str_replace_all
 buildPaths <- function(
-    fit, coefs = FALSE, sig = 1.00,
-    stand = FALSE, covs = FALSE, stars = NULL,
-    digits = 2, conf.int = F, edge_styles = F) {
+    fit, coefs, sig,
+    stand, covs, stars,
+    digits, conf.int, edge_styles) {
   if (stand) {
     ParTable <- lavaan::standardizedsolution(fit)
     ParTableAlt <- fit@ParTable
@@ -272,9 +272,9 @@ buildCall <- function(
 #' @param model A model fit object of class lavaan.
 #' @param name A string of the name of the plot.
 #' @param labels  An optional named list of variable labels fit object of class lavaan.
-#' @param graph_options  A named list of graph options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/graph/)
-#' @param node_options  A named list of node options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/nodes/)
-#' @param edge_options  A named list of edge options for Diagrammer syntax. See for options [here](https://graphviz.org/docs/edges/)
+#' @param graph_options  A named list of graph options for Diagrammer syntax. See for options https://graphviz.org/docs/graph/
+#' @param node_options  A named list of node options for Diagrammer syntax. See for options https://graphviz.org/docs/nodes/
+#' @param edge_options  A named list of edge options for Diagrammer syntax. See for options https://graphviz.org/docs/edges/
 #' @param coefs whether or not to include significant path coefficient values in diagram
 #' @param sig significance level for determining what significant paths are
 #' @param stand Should the coefficients being used be standardized coefficients
@@ -318,5 +318,5 @@ lavaanPlot <- function(
     digits = digits, conf.int = conf.int, edge_styles = edge_styles,
     ...
   )
-  grViz(plotCall)
+  DiagrammeR::grViz(plotCall)
 }
