@@ -7,7 +7,7 @@
 #' @importFrom dplyr filter bind_cols .data
 #' @export
 extract_coefs <- function(model, include = NULL, stand = FALSE) {
-  if(stand){
+  if (stand) {
     par_table <- lavaan::standardizedSolution(model) %>%
       dplyr::mutate(p_val = (1 - stats::pnorm(abs(.data$z))) * 2)
   } else {
@@ -40,38 +40,40 @@ extract_coefs <- function(model, include = NULL, stand = FALSE) {
 #' @param groups character vector of the names of custom groups, with nodes and edges default values are set and you need to match the order: for nodes: c("latent", "obs"), for edges: c("regress", "latent", "covs"). For custom groups of edges, you must match names that you pre-multiply with coefficients in your model specification.
 #' @return a formatting data frame that can work with the create_nodes and create_edges functions
 #' @export
-formatting <- function(..., type, groups){
-
+formatting <- function(..., type, groups) {
   # set the group options
-  if(type == "node"){
+  if (type == "node") {
     groups <- c("latent", "obs")
-  } else if (type == "edge"){
+  } else if (type == "edge") {
     groups <- c("regress", "latent", "covs")
   } else if (type == "custom") {
     groups <- groups
   }
 
   # check number of groups against the number of inputs
-  if(type == "custom"){
-    if(nargs() - 2 != length(groups)){stop("Number of formatting options must equal number of groups")}
-
+  if (type == "custom") {
+    if (nargs() - 2 != length(groups)) {
+      stop("Number of formatting options must equal number of groups")
+    }
   } else {
-    if(nargs() - 1 != length(groups)){stop("Number of formatting options must equal number of groups")}
+    if (nargs() - 1 != length(groups)) {
+      stop("Number of formatting options must equal number of groups")
+    }
   }
 
   # combine these into a df that will join with the node (or edge) data frames
-  format <- purrr::map2_dfr(list(...), .f = ~data.frame(.x) %>% dplyr::mutate(group = .y), .y = groups)
-  #format
+  format <- purrr::map2_dfr(list(...), .f = ~ data.frame(.x) %>% dplyr::mutate(group = .y), .y = groups)
+  # format
 
   # # set the group options
-  if(type == "node"){
-      attr(format, "type") <- "node"
-    } else if (type == "edge"){
-      attr(format, "type") <- "edge"
-    } else if (type == "custom") {
-      attr(format, "type") <- "custom"
-    }
-    format
+  if (type == "node") {
+    attr(format, "type") <- "node"
+  } else if (type == "edge") {
+    attr(format, "type") <- "edge"
+  } else if (type == "custom") {
+    attr(format, "type") <- "custom"
+  }
+  format
 }
 
 #' Creates node data frame and adds formatting
@@ -124,7 +126,7 @@ create_nodes <- function(coefs, labels = NULL, node_options) {
 
   # check for a dataframe here instead
   if (is.data.frame(node_options)) {
-  # then link em up
+    # then link em up
     node_df <- dplyr::left_join(node_df, node_options, by = "group", suffix = c("_orig", "")) %>% dplyr::mutate(shape = ifelse(is.na(.data$shape), .data$shape_orig, .data$shape))
   } else if (!is.null(node_options)) {
     node_opts <- map_dfc(node_options, function(x) rep(x, nrow(node_df)))
@@ -132,7 +134,6 @@ create_nodes <- function(coefs, labels = NULL, node_options) {
   }
 
   node_df
-
 }
 
 #' Creates edge data frame and adds formatting
@@ -149,20 +150,19 @@ create_nodes <- function(coefs, labels = NULL, node_options) {
 #' @importFrom dplyr bind_cols
 #' @export
 create_edges <- function(coefs, ndf, edge_options, coef_labels = FALSE, stand = FALSE, stars = NULL, sig = 1.00) {
-
   regress <- coefs$op == "~"
   latent <- coefs$op == "=~"
   covs <- coefs$op == "~~" & (coefs$rhs != coefs$lhs)
 
-  stars_yn <- if(!is.null(stars)) pmap_lgl(map(stars, dynGet), any) else NULL
+  stars_yn <- if (!is.null(stars)) pmap_lgl(map(stars, dynGet), any) else NULL
   coef_vals <- round(coefs$est, digits = 2)
 
-  if(coef_labels & !is.null(stars)){
-    label = ifelse(stars_yn, paste(coef_vals, coefs$stars, sep = ""), coef_vals)
-  } else if(coef_labels){
-    label = coef_vals
+  if (coef_labels & !is.null(stars)) {
+    label <- ifelse(stars_yn, paste(coef_vals, coefs$stars, sep = ""), coef_vals)
+  } else if (coef_labels) {
+    label <- coef_vals
   } else {
-    label = NULL
+    label <- NULL
   }
 
   edge_df <- DiagrammeR::create_edge_df(
@@ -181,28 +181,32 @@ create_edges <- function(coefs, ndf, edge_options, coef_labels = FALSE, stand = 
     dir = ifelse(coefs$op == "=~", "back", ifelse(coefs$op == "~~", "both", "forward"))
   )
 
-  if (!is.null(coef_labels)){
+  if (!is.null(coef_labels)) {
     edge_df <- bind_cols(edge_df, label = label)
   }
 
 
-    edge_df <- edge_df %>% dplyr::mutate(group = dplyr::case_when(edge_df$regress ~ "regress",
-                                                    edge_df$latent ~ "latent",
-                                                    edge_df$covs ~ "covs"))
+  edge_df <- edge_df %>% dplyr::mutate(group = dplyr::case_when(
+    edge_df$regress ~ "regress",
+    edge_df$latent ~ "latent",
+    edge_df$covs ~ "covs"
+  ))
 
-    # checking if it's a list of data frames
-    if(any(map_lgl(edge_options, is.data.frame))){
-    names(edge_options) <- map(edge_options, ~attr(., "type"))
+  # checking if it's a list of data frames
+  if (any(map_lgl(edge_options, is.data.frame))) {
+    names(edge_options) <- map(edge_options, ~ attr(., "type"))
 
     # join 1
     join1 <- dplyr::left_join(edge_df, edge_options$edge, by = "group", suffix = c("_orig", ""))
-    #print(join1)
+    # print(join1)
     # join 2
     join2 <- dplyr::left_join(join1, edge_options$custom, by = c("tag" = "group"), suffix = c("_older", ""))
     # find var names diff
     var_names <- colnames(edge_options$custom)[colnames(edge_options$custom) %in% colnames(edge_options$edge) & colnames(edge_options$custom) != "group"]
     # fall back
-    join2[,var_names] <- map(var_names, function(x){ifelse(is.na(join2[,x]), join2[,paste(x, "older", sep = "_")], join2[,x])})
+    join2[, var_names] <- map(var_names, function(x) {
+      ifelse(is.na(join2[, x]), join2[, paste(x, "older", sep = "_")], join2[, x])
+    })
     edge_df <- join2
   } else if (is.data.frame(edge_options)) {
     edge_df <- dplyr::left_join(edge_df, edge_options, by = "group", suffix = c("_orig", ""))
@@ -217,23 +221,6 @@ create_edges <- function(coefs, ndf, edge_options, coef_labels = FALSE, stand = 
   }
 }
 
-#' Generates standard significance stars
-#'
-#' @param pvals a vector of p values
-sig_stars <- function(pvals){
-
-  if(pvals <= 0.001){
-    star = "***"
-  } else if (pvals <= 0.01){
-    star = "**"
-  } else if (pvals <= 0.05){
-    star = "*"
-  } else {
-    star = ""
-  }
-  star
-}
-
 #' Uses the diagrammeR functions to turn the ndf and edf into dot
 #'
 #' @param ndf A node data frame created by \code{create_nodes}
@@ -246,9 +233,11 @@ sig_stars <- function(pvals){
 convert_graph <- function(ndf, edf, graph_options) {
   gr <- DiagrammeR::create_graph(ndf, edf, attr_theme = NULL)
 
-  if(!is.null(graph_options)){
-    gr_opts <- map2(graph_options, names(graph_options), function(x, names){c(attr = names, value = x, attr_type = "graph")}) %>%
-        bind_rows()
+  if (!is.null(graph_options)) {
+    gr_opts <- map2(graph_options, names(graph_options), function(x, names) {
+      c(attr = names, value = x, attr_type = "graph")
+    }) %>%
+      bind_rows()
 
     gr$global_attrs <- bind_rows(gr$global_attrs, gr_opts)
   }
