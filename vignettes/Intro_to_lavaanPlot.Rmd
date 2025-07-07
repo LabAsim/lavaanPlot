@@ -1,6 +1,6 @@
 ---
 title: "Intro to lavaanPlot"
-author: "Lab Asim & Alex Lishinski"
+author: "Lab Asim  (original author: Alex Lishinski)"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
