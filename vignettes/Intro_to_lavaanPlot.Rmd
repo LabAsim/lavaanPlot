@@ -1,6 +1,6 @@
 ---
 title: "Intro to lavaanPlot"
-author: "Alex Lishinski"
+author: "Lab Asim & Alex Lishinski"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -15,10 +15,14 @@ The lavaan package is an excellent package for structural equation models, and t
 
 ## Package example
 
-The package is very straightforward to use, simply call the `lavaanPlot` function with your lavaan model, adding whatever graph, node and edge attributes you want as a named list (graph attributes are specified as a standard default value that shows you what the other attribute lists should look like). For your reference, the available attributes can be found here:
+The package is very straightforward to use, simply call the `lavaanPlot` function with your lavaan model, adding whatever graph, node and edge attributes you want as a named list (graph attributes are specified as a standard default value that shows you what the other attribute lists should look like). For your reference, the available attributes can be found here: 
 
-https://rich-iannone.github.io/DiagrammeR/graphviz_and_mermaid.html#node-attributes
-https://rich-iannone.github.io/DiagrammeR/graphviz_and_mermaid.html#edge-attributes
+* [graph](https://graphviz.org/docs/graph/) 
+
+* [node](https://graphviz.org/docs/nodes/)
+
+* [edge](https://graphviz.org/docs/edges/)
+
 
 Here's a quick example using the `mtcars` data set. 
 
@@ -89,6 +93,20 @@ You can also show standardized paths only with the `stand` argument.
 lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, stand = TRUE)
 ```
 
+
+There is an option to include confidence intervals along with other options (currently only for path analysis)
+
+```{r}
+lavaanPlot(
+  model = fit, labels = labels, 
+  node_options = list(shape = "box", fontname = "Helvetica"), 
+  edge_options = list(color = "grey"), 
+  coefs = TRUE, covs = TRUE, stars = TRUE, digits = 2,
+  conf.int = T
+)
+```
+
+
 Same works for latent variable loadings
 
 ```{r}
@@ -138,7 +156,12 @@ lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", font
 You can change the number of decimal places in the coefficient value labels as well with the `digits` option.
 
 ```{r}
-lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, covs = TRUE, stars = TRUE, digits = 1)
+lavaanPlot(
+  model = fit, labels = labels, 
+  node_options = list(shape = "box", fontname = "Helvetica"), 
+  edge_options = list(color = "grey"), 
+  coefs = TRUE, covs = TRUE, stars = TRUE, digits = 1
+)
 ```
 
 ## Graph Options

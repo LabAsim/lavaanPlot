@@ -40,7 +40,6 @@ install.packages("webshot", repos = "http://cran.us.r-project.org")
 webshot::install_phantomjs(force=T)
 ```
 
-
 ## Examples
 
 Here's a quick example using the `mtcars` data set. 
