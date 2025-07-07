@@ -79,6 +79,7 @@ summary(fit)
 lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE)
 ```
 
+### Significance level
 By default it will show all paths, but you can also specify whatever significance level you want using the `sig` argument to only show significant paths.
 
 ```{r}
@@ -86,6 +87,7 @@ By default it will show all paths, but you can also specify whatever significanc
 lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, sig = .05)
 ```
 
+### Standardized paths
 You can also show standardized paths only with the `stand` argument.
 
 ```{r}
@@ -93,7 +95,7 @@ You can also show standardized paths only with the `stand` argument.
 lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, stand = TRUE)
 ```
 
-
+### Confidence intervals
 There is an option to include confidence intervals along with other options (currently only for path analysis)
 
 ```{r}
@@ -107,6 +109,7 @@ lavaanPlot(
 ```
 
 
+### Latent variables
 Same works for latent variable loadings
 
 ```{r}
