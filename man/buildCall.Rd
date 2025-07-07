@@ -8,9 +8,17 @@ buildCall(
   model = model,
   name = name,
   labels = labels,
-  graph_options = list(overlap = "true", fontsize = "10"),
-  node_options = list(shape = "box"),
-  edge_options = list(color = "black"),
+  graph_options = graph_options,
+  node_options = node_options,
+  edge_options = edge_options,
+  coefs,
+  sig,
+  stand,
+  covs,
+  stars,
+  digits,
+  conf.int,
+  edge_styles,
   ...
 )
 }
@@ -26,6 +34,22 @@ buildCall(
 \item{node_options}{A named list of node options for Diagrammer syntax.}
 
 \item{edge_options}{A named list of edge options for Diagrammer syntax.}
+
+\item{coefs}{whether or not to include significant path coefficient values in diagram}
+
+\item{sig}{significance level for determining what significant paths are}
+
+\item{stand}{Should the coefficients being used be standardized coefficients}
+
+\item{covs}{Should model covariances be included in the diagram}
+
+\item{stars}{a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.}
+
+\item{digits}{A number indicating the desired number of digits for the coefficient values in the plot}
+
+\item{conf.int}{whether or not to include confidence intervals of path coefficients}
+
+\item{edge_styles}{Whether or not to depict non-significant coefficients with dashed paths}
 
 \item{...}{additional arguments to be passed to \code{buildPaths}}
 }
