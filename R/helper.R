@@ -22,3 +22,19 @@ create_edge_styles <- function(pvals, edge_styles = F) {
   }
   return(edge_styles)
 }
+
+#' Generates standard significance stars
+#'
+#' @param pvals a vector of p values
+sig_stars <- function(pval) {
+  if (pval <= 0.001) {
+    star <- "***"
+  } else if (pval <= 0.01) {
+    star <- "**"
+  } else if (pval <= 0.05) {
+    star <- "*"
+  } else {
+    star <- ""
+  }
+  return(star)
+}

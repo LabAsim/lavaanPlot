@@ -181,23 +181,6 @@ getNodes <- function(fit) {
   list(observeds = observed_nodes, latents = latent_nodes)
 }
 
-#' Generates standard significance stars
-#'
-#' @param pvals a vector of p values
-sig_stars <- function(pvals) {
-  if (pvals <= 0.001) {
-    star <- "***"
-  } else if (pvals <= 0.01) {
-    star <- "**"
-  } else if (pvals <= 0.05) {
-    star <- "*"
-  } else {
-    star <- ""
-  }
-  star
-}
-
-
 #' Adds variable labels to the Diagrammer plot function call.
 #'
 #' @param label_list A named list of variable labels.
