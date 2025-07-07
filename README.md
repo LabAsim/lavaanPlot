@@ -1,5 +1,6 @@
 
 ⁠<!-- badges: start -->⁠
+
 [![R-CMD-check.yaml](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LabAsim/lavaanPlot/actions/workflows/R-CMD-check.yaml)
 [![Test
 coverage](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml)
