@@ -1,4 +1,4 @@
-# lavaanPlot 0.8.2
+# lavaanPlot 0.9
 
 * Introducing `conf.int` arg in `lavaanPlot`
 * Introducing `edge_styles` arg in `lavaanPlot` to plot non-significant paths as dashed lines.
