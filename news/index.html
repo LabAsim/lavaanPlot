@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">lavaanPlot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,7 @@
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/LabAsim/lavaanPlot/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -35,12 +36,19 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-
+      <small>Source: <a href="https://github.com/LabAsim/lavaanPlot/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.2" id="lavaanplot-082">lavaanPlot 0.8.2<a class="anchor" aria-label="anchor" href="#lavaanplot-082"></a></h2>
+<ul><li>Introducing <code>conf.int</code> arg in <code>lavaanPlot</code>
+</li>
+<li>Introducing <code>edge_styles</code> arg in <code>lavaanPlot</code> to plot non-significant paths as dashed lines.</li>
+<li>Add and document <code>buildPaths</code> and <code>buildCall</code> args to <code>lavaanplot</code> instead of just using <code>...</code>. In this way, when you build your plot, it’s easier to see what your options are, instead of searching <code>buildPaths</code> and <code>buildCall</code> args.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1" id="lavaanplot-081">lavaanPlot 0.8.1<a class="anchor" aria-label="anchor" href="#lavaanplot-081"></a></h2><p class="text-muted">CRAN release: 2024-01-29</p>
-<ul><li>Fixed bug with the standardized coefficents in <code>lavaanPlot2</code>
+<ul><li>Fixed bug with the standardized coefficients in <code>lavaanPlot2</code>
 </li>
 </ul></div>
     <div class="section level2">
@@ -103,7 +111,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lab Asim.</p>
+  <p>Developed by Alex Lishinski, Lab Asim.</p>
 </div>
 
 <div class="pkgdown-footer-right">
