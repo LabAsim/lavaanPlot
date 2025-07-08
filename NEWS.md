@@ -1,7 +1,14 @@
+# lavaanPlot 0.8.2
+
+* Introducing `conf.int` arg in `lavaanPlot`
+* Introducing `edge_styles` arg in `lavaanPlot` to plot non-significant paths as dashed lines.
+* Add and document `buildPaths` and `buildCall` args to `lavaanplot` instead of just using `...`. 
+In this way, when you build your plot, it's easier to see what your options are, 
+instead of searching `buildPaths` and `buildCall` args.
 
 # lavaanPlot 0.8.1
 
-* Fixed bug with the standardized coefficents in `lavaanPlot2`
+* Fixed bug with the standardized coefficients in `lavaanPlot2`
 
 # lavaanPlot 0.8.0
 
