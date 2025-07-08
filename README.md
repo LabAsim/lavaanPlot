@@ -4,6 +4,7 @@
 [![Test
 coverage](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.yaml)
 [![codecov](https://codecov.io/github/LabAsim/lavaanPlot/graph/badge.svg?token=DBA8ZBICH1)](https://codecov.io/github/LabAsim/lavaanPlot)
+[![Last-commit](https://img.shields.io/github/last-commit/LabAsim/lavaanPlot)](https://github.com/LabAsim/lavaanPlot/commits/main)
 <!-- badges: end -->⁠
 
 ## Current status
