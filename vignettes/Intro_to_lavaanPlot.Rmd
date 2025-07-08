@@ -87,6 +87,16 @@ By default it will show all paths, but you can also specify whatever significanc
 lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, sig = .05)
 ```
 
+#### Dashed lines
+```{r}
+# Dashed lines
+lavaanPlot(
+  model = fit, 
+  coefs = TRUE, edge_style = T, stars = c("regress")
+)
+```
+
+
 ### Standardized paths
 You can also show standardized paths only with the `stand` argument.
 
