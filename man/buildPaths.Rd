@@ -21,7 +21,7 @@ buildPaths(fit, coefs, sig, stand, covs, stars, digits, conf.int, edge_styles)
 
 \item{digits}{A number indicating the desired number of digits for the coefficient values in the plot}
 
-\item{conf.int}{whether or not to include confidence intervals of path coefficients}
+\item{conf.int}{A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"}
 
 \item{edge_styles}{Whether or not to depict non-significant coefficients with dashed paths}
 }

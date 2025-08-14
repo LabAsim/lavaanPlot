@@ -247,7 +247,7 @@ plot <- lavaanPlot(
   node_options = list(shape = "box", fontname = "Helvetica"),
   edge_options = list(color = "grey"),
   coefs = T,
-  conf.int = T,
+  conf.int = c("reg"),
   digits = 2
 )
 
@@ -355,7 +355,7 @@ plot <- lavaanPlot(
     labelloc = "b", label = "'Bottom title'"
   ),
   coefs = T,
-  conf.int = T,
+  conf.int = c("reg"),
   digits = 2,
   edge_style = T,
   stars = c("regress", "latent", "covs")
@@ -376,13 +376,13 @@ model <- "
   # regressions
     dem60 ~ ind60
 "
-fit <- sem(model, data = PoliticalDemocracy)
+fit <- lavaan::sem(model, data = lavaan::PoliticalDemocracy)
 plot <- lavaanPlot(
   model = fit, ,
   node_options = list(shape = "box", fontname = "Helvetica"),
   edge_options = list(color = "grey"),
   coefs = TRUE, covs = TRUE, stars = c("regress", "latent"), digits = 2,
-  conf.int = T
+  conf.int = c("reg", "lat")
 )
 plot$x$diagram
 plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x1; x2; y1; y2 \n node [shape = oval] \n ind60; dem60 \n \n edge [ color = grey ] \n ind60->dem60 [label = \"1.21**\n(0.38 – 2.05)\"] ind60->x1 [label = \"1***\n(1 – 1)\"] ind60->x2 [label = \"1.66***\n(1.1 – 2.22)\"] dem60->y1 [label = \"1***\n(1 – 1)\"] dem60->y2 [label = \"0.72*\n(0.01 – 1.44)\"] \n}"

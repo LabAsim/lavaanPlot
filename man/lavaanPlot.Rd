@@ -17,7 +17,7 @@ lavaanPlot(
   covs = FALSE,
   stars = NULL,
   digits = 2,
-  conf.int = F,
+  conf.int = c(),
   edge_styles = F,
   ...
 )
@@ -47,7 +47,7 @@ lavaanPlot(
 
 \item{digits}{A number indicating the desired number of digits for the coefficient values in the plot}
 
-\item{conf.int}{whether or not to include confidence intervals of path coefficients}
+\item{conf.int}{A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"}
 
 \item{edge_styles}{Whether or not to depict non-significant coefficients with dashed paths}
 

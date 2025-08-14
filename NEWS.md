@@ -1,3 +1,8 @@
+# lavaanPlot 0.10
+
+* `conf.int` arg in `lavaanPlot` function should be a character vector instead of a Boolean var. Available choice are "lat" for latent variables 
+or "reg" for regression coefs.
+
 # lavaanPlot 0.9
 
 * Introducing `conf.int` arg in `lavaanPlot`

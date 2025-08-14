@@ -7,7 +7,7 @@
 #' @param covs Should model covariances be included in the diagram
 #' @param stars a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
-#' @param conf.int whether or not to include confidence intervals of path coefficients
+#' @param conf.int A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"
 #' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @importFrom stringr str_replace_all
 buildPaths <- function(
@@ -83,12 +83,14 @@ buildPaths <- function(
   edge_styles_regress <- create_edge_styles(
     pvals = pval_reg, edge_styles = edge_styles
   )
-
   edge_styles_lat <- create_edge_styles(
     pvals = pval_lat, edge_styles = edge_styles
   )
 
-  # penwidths <- ifelse(coefs == "", 1, 2)
+  # Boolean vars to check whether to present CI's or not
+  conf.int_reg <- "regress" %in% conf.int | "reg" %in% conf.int
+  conf.int_lat <- "latent" %in% conf.int | "lat" %in% conf.int
+
   if (any(regress)) {
     if (coefs) {
       regress_paths <- paste(
@@ -99,12 +101,12 @@ buildPaths <- function(
         paste(
           "[label = '",
           coef, stars_reg,
-          if (conf.int) "\n",
-          if (conf.int) "(",
-          if (conf.int) ci.lower_reg else "",
-          if (conf.int) " \u2013 ",
-          if (conf.int) ci.upper_reg else "",
-          if (conf.int) ")",
+          if (conf.int_reg) "\n",
+          if (conf.int_reg) "(",
+          if (conf.int_reg) ci.lower_reg else "",
+          if (conf.int_reg) " \u2013 ",
+          if (conf.int_reg) ci.upper_reg else "",
+          if (conf.int_reg) ")",
           "'",
           edge_styles_regress,
           "]",
@@ -128,12 +130,12 @@ buildPaths <- function(
         paste(
           "[label = '",
           latent_coef, stars_lat,
-          if (conf.int) "\n",
-          if (conf.int) "(",
-          if (conf.int) ci.lower_lat else "",
-          if (conf.int) " \u2013 ",
-          if (conf.int) ci.upper_lat else "",
-          if (conf.int) ")",
+          if (conf.int_lat) "\n",
+          if (conf.int_lat) "(",
+          if (conf.int_lat) ci.lower_lat else "",
+          if (conf.int_lat) " \u2013 ",
+          if (conf.int_lat) ci.upper_lat else "",
+          if (conf.int_lat) ")",
           "'",
           edge_styles_lat,
           "]",
@@ -231,7 +233,7 @@ buildLabels <- function(label_list) {
 #' @param covs Should model covariances be included in the diagram
 #' @param stars a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
-#' @param conf.int whether or not to include confidence intervals of path coefficients
+#' @param conf.int A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"
 #' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @param ... additional arguments to be passed to \code{buildPaths}
 #' @return A string specifying the path diagram for \code{model}
@@ -308,7 +310,7 @@ buildCall <- function(
 #' @param covs Should model covariances be included in the diagram
 #' @param stars a character vector indicating which parameters should include significance stars be included for regression paths, latent paths, or covariances. Include which of the 3 you want ("regress", "latent", "covs"), default is none.
 #' @param digits A number indicating the desired number of digits for the coefficient values in the plot
-#' @param conf.int whether or not to include confidence intervals of path coefficients
+#' @param conf.int A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"
 #' @param edge_styles Whether or not to depict non-significant coefficients with dashed paths
 #' @param ... Additional arguments to be called to \code{buildCall} and \code{buildPaths}
 #' @return A Diagrammer plot of the path diagram for \code{model}
@@ -333,7 +335,7 @@ lavaanPlot <- function(
     # buildPaths args
     coefs = FALSE, sig = 1.00,
     stand = FALSE, covs = FALSE, stars = NULL,
-    digits = 2, conf.int = F, edge_styles = F, ...) {
+    digits = 2, conf.int = c(), edge_styles = F, ...) {
   plotCall <- buildCall(
     model = model, name = name, labels = labels,
     graph_options = graph_options,

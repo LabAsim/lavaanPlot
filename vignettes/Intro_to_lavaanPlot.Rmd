@@ -106,7 +106,7 @@ lavaanPlot(model = fit, labels = labels, node_options = list(shape = "box", font
 ```
 
 ### Confidence intervals
-There is an option to include confidence intervals along with other options (currently only for path analysis)
+There is an option to include confidence intervals along with other options.
 
 ```{r}
 lavaanPlot(
@@ -114,7 +114,7 @@ lavaanPlot(
   node_options = list(shape = "box", fontname = "Helvetica"), 
   edge_options = list(color = "grey"), 
   coefs = TRUE, covs = TRUE, stars = TRUE, digits = 2,
-  conf.int = T
+  conf.int = c("reg")
 )
 ```
 
