@@ -12,8 +12,7 @@ coverage](https://github.com/LabAsim/lavaanplot/actions/workflows/test-coverage.
 The [original package](https://github.com/alishinski/lavaanPlot) is not
 maintained for a long time, so I
 [forked](https://github.com/LabAsim/lavaanPlot) it and added some
-features that I needed for my research and they were not available. They
-will be documented in a new vignette. The new documentation is available
+features that I needed for my research and they were not available. The new documentation is available
 [here](https://labasim.github.io/lavaanPlot/).
 
 ## Background
