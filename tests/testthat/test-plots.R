@@ -367,3 +367,25 @@ plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10, labelloc 
 test_that("plot", {
   expect_identical(plot$x$diagram, plot_ref)
 })
+
+# Test conf.int for latent vars
+model <- "
+  # measurement model
+    ind60 =~ x1 + x2
+    dem60 =~ y1+y2
+  # regressions
+    dem60 ~ ind60
+"
+fit <- sem(model, data = PoliticalDemocracy)
+plot <- lavaanPlot(
+  model = fit, ,
+  node_options = list(shape = "box", fontname = "Helvetica"),
+  edge_options = list(color = "grey"),
+  coefs = TRUE, covs = TRUE, stars = c("regress", "latent"), digits = 2,
+  conf.int = T
+)
+plot$x$diagram
+plot_ref <- " digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x1; x2; y1; y2 \n node [shape = oval] \n ind60; dem60 \n \n edge [ color = grey ] \n ind60->dem60 [label = \"1.21**\n(0.38 – 2.05)\"] ind60->x1 [label = \"1***\n(1 – 1)\"] ind60->x2 [label = \"1.66***\n(1.1 – 2.22)\"] dem60->y1 [label = \"1***\n(1 – 1)\"] dem60->y2 [label = \"0.72*\n(0.01 – 1.44)\"] \n}"
+test_that(desc = "Plot with stars and CI for latent and regress coefs", {
+  expect_identical(plot$x$diagram, plot_ref)
+})

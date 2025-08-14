@@ -43,8 +43,10 @@ buildPaths <- function(
     ),
     ""
   )
-  ci.lower <- round(ParTable$ci.lower[regress], digits = digits)
-  ci.upper <- round(ParTable$ci.upper[regress], digits = digits)
+  ci.lower_reg <- round(ParTable$ci.lower[regress], digits = digits)
+  ci.upper_reg <- round(ParTable$ci.upper[regress], digits = digits)
+  ci.lower_lat <- round(ParTable$ci.lower[latent], digits = digits)
+  ci.upper_lat <- round(ParTable$ci.upper[latent], digits = digits)
 
   zval_lat <- ParTableAlt$est[latent] / ParTableAlt$se[latent]
   pval_lat <- (1 - stats::pnorm(abs(zval_lat))) * 2
@@ -82,6 +84,10 @@ buildPaths <- function(
     pvals = pval_reg, edge_styles = edge_styles
   )
 
+  edge_styles_lat <- create_edge_styles(
+    pvals = pval_lat, edge_styles = edge_styles
+  )
+
   # penwidths <- ifelse(coefs == "", 1, 2)
   if (any(regress)) {
     if (coefs) {
@@ -95,9 +101,9 @@ buildPaths <- function(
           coef, stars_reg,
           if (conf.int) "\n",
           if (conf.int) "(",
-          if (conf.int) ci.lower else "",
+          if (conf.int) ci.lower_reg else "",
           if (conf.int) " \u2013 ",
-          if (conf.int) ci.upper else "",
+          if (conf.int) ci.upper_reg else "",
           if (conf.int) ")",
           "'",
           edge_styles_regress,
@@ -114,7 +120,28 @@ buildPaths <- function(
   }
   if (any(latent)) {
     if (coefs) {
-      latent_paths <- paste(paste(ParTable$lhs[latent], ParTable$rhs[latent], sep = "->"), paste("[label = '", latent_coef, stars_lat, "']", sep = ""), collapse = " ")
+      latent_paths <- paste(
+        paste(
+          ParTable$lhs[latent], ParTable$rhs[latent],
+          sep = "->"
+        ),
+        paste(
+          "[label = '",
+          latent_coef, stars_lat,
+          if (conf.int) "\n",
+          if (conf.int) "(",
+          if (conf.int) ci.lower_lat else "",
+          if (conf.int) " \u2013 ",
+          if (conf.int) ci.upper_lat else "",
+          if (conf.int) ")",
+          "'",
+          edge_styles_lat,
+          "]",
+          sep = ""
+        ),
+        # paste("[label = '", latent_coef, stars_lat, "']", sep = ""),
+        collapse = " "
+      )
     } else {
       latent_paths <- paste(paste(ParTable$lhs[latent], ParTable$rhs[latent], sep = "->"), collapse = " ")
     }
