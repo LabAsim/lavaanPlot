@@ -59,7 +59,7 @@
 <span>  covs <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  stars <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  conf.int <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  conf.int <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  edge_styles <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -118,7 +118,7 @@
 
 
 <dt id="arg-conf-int">conf.int<a class="anchor" aria-label="anchor" href="#arg-conf-int"></a></dt>
-<dd><p>whether or not to include confidence intervals of path coefficients</p></dd>
+<dd><p>A character vector indicating which parameters should have their CIs depicted in the plot. Available choices: "reg", "regression", "lat", "latent"</p></dd>
 
 
 <dt id="arg-edge-styles">edge_styles<a class="anchor" aria-label="anchor" href="#arg-edge-styles"></a></dt>

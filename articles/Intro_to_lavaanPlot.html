@@ -64,7 +64,7 @@
                         <h4 data-toc-skip class="author">Lab Asim
 (original author: Alex Lishinski)</h4>
             
-            <h4 data-toc-skip class="date">2025-07-08</h4>
+            <h4 data-toc-skip class="date">2025-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LabAsim/lavaanPlot/blob/master/vignettes/Intro_to_lavaanPlot.Rmd" class="external-link"><code>vignettes/Intro_to_lavaanPlot.Rmd</code></a></small>
       <div class="d-none name"><code>Intro_to_lavaanPlot.Rmd</code></div>
@@ -275,14 +275,14 @@ argument.</p>
 <h3 id="confidence-intervals">Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals"></a>
 </h3>
 <p>There is an option to include confidence intervals along with other
-options (currently only for path analysis)</p>
+options.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/lavaanPlot.html">lavaanPlot</a></span><span class="op">(</span></span>
 <span>  model <span class="op">=</span> <span class="va">fit</span>, labels <span class="op">=</span> <span class="va">labels</span>, </span>
 <span>  node_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"box"</span>, fontname <span class="op">=</span> <span class="st">"Helvetica"</span><span class="op">)</span>, </span>
 <span>  edge_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span>, </span>
 <span>  coefs <span class="op">=</span> <span class="cn">TRUE</span>, covs <span class="op">=</span> <span class="cn">TRUE</span>, stars <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  conf.int <span class="op">=</span> <span class="cn">T</span></span>
+<span>  conf.int <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reg"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="grViz html-widget html-fill-item" id="htmlwidget-5b1b2f4ad92281566982" style="width:700px;height:432.632880098888px;"></div>
 <script type="application/json" data-for="htmlwidget-5b1b2f4ad92281566982">{"x":{"diagram":" digraph plot { \n graph [ overlap = true, fontsize = 10 ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n cyl; disp; hp; wt; mpg; qsec \n node [shape = oval] \n  \n mpg [label = \"Miles Per Gallon\"]\ncyl [label = \"Cylinders\"]\ndisp [label = \"Displacement\"]\nhp [label = \"Horsepower\"]\nqsec [label = \"Speed\"]\nwt [label = \"Weight\"] \n edge [ color = grey ] \n cyl->mpg [label = \"-0.99\n(-2.43 – 0.46)\"] disp->mpg [label = \"-0.02\n(-0.04 – 0)\"] hp->mpg [label = \"-0.02\n(-0.04 – 0.01)\"] disp->qsec [label = \"-0.01\n(-0.02 – 0)\"] hp->qsec [label = \"-0.02\n(-0.03 – -0.01)\"] wt->qsec [label = \"1.69\n(0.91 – 2.48)\"]  qsec -> mpg [label = \"0.45\", dir = \"both\"] disp -> cyl [label = \"193.42\", dir = \"both\"] hp -> cyl [label = \"98.75\", dir = \"both\"] wt -> cyl [label = \"1.32\", dir = \"both\"] hp -> disp [label = \"6511.12\", dir = \"both\"] wt -> disp [label = \"104.32\", dir = \"both\"] wt -> hp [label = \"42.81\", dir = \"both\"]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
